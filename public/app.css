@@ -1,0 +1,71 @@
+/* body {
+    background-color: darkgoldenrod;
+} */
+
+/* div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div > p > span {
+    float: left;
+    display: inline-block;
+} */
+
+/* div > p > img {
+    align-items: center;
+    margin: auto;
+    display: block;
+    /* <img src = "<%=movie.Poster %>"  alt="" height='208' width ='150'> 
+    
+<p>
+<% if (movie.Poster == 'N/A') { %>
+   <%   return 'https://via.placeholder.com/332x300?text=Movie+Poster+unavailable' %>
+<% } else {   %> 
+    <% return movie.Poster; %>
+<% } %>
+</p>
+
+<img src = "<%=movie.Poster %>"  alt="">
+
+} */
+
+
+.container .row {
+    margin: 0 auto !important;
+    text-align: center;
+  }
+
+  div > form {
+    display: block !important;
+    text-align: center !important;
+  }
+
+  form
+{
+    display: inline-block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left !important;
+
+
+}
+
+.col.s12.m6.offset-m3 {
+    top: 50%;
+    margin-bottom: 50vw;
+    margin-bottom: 50vw;
+}
+
+.valign-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card {
+    margin: 0 auto;
+    position: relative;
+}

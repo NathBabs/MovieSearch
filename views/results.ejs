@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/app.css">
+<link rel="stylesheet" href="/materialize.css">
+
+
+<div class="container">
+<h1 style="text-align:center">
+Results
+</h1>
+<div class='row'>
+
+<% data.Search.forEach((movie) => { %>
+
+<div class='col s12 l4'>
+<div class="card hoverable large">
+<div class="card-image">
+<img src="<% if (movie.Poster == 'N/A') { %>
+    <%='https://via.placeholder.com/332x300?text=Movie+Poster+unavailable' %>
+<% } else { %> 
+    <%= movie.Poster %>
+<% } %>" alt="">
+</div>
+<div class="card-content">
+<span class="card-title"><%= movie.Title %> - <%- movie.Year %> </span>
+</div>
+</div>
+</div>
+<% }) %>
+
+</div>
+</div>
+
+
+
+<script src="/materialize.js"></script>
+
