@@ -1,34 +1,80 @@
 <link rel="stylesheet" href="/app.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/materialize.css">
+<link rel="stylesheet" type="text/css" href="/js/simplebar.css">
 
+
+<style>
+
+div.simplebar-scrollbar.simplebar-visible::before {
+    scrollbar-color: white !important;
+    visibility : visible !important;
+    fill: grey !important;
+    background-color: grey !important;
+}
+</style>
 
 <div class="container">
-<h1 style="text-align:center">
-Results
-</h1>
-<div class='row'>
+    <h1 style="text-align:center">
+        Results
+    </h1>
+    <div class='row'>
 
-<div class='col s12 l6 offset-l3'>
-<div class="card hoverable large white-text black">
-<div class="card-image">
-<img src="<% if (data.Poster == 'N/A') { %>
+        <div class='col s12 l6 offset-l3'>
+            <div class="card hoverable large white-text black">
+                <div class="card-image">
+                    <img class="activator" src="<% if (data.Poster == 'N/A') { %>
     <%='https://via.placeholder.com/332x300?text=Movie+Poster+unavailable' %>
 <% } else { %> 
     <%= data.Poster %>
 <% } %>" alt="">
-</div>
-<div class="card-content">
-<span class="card-title"><%= data.Title %> - <%- data.Year %> </span>
-<p>
-<%- data.Plot %> 
-</p>
-</div>
-</div>
-</div>
+                </div>
+                <div class="card-content" id="colDiv" style="overflow:visible; scrollbar-color: white;" data-simplebar data-simplebar data-simplebar-auto-hide="false" > 
+                    <span class="card-title activator"><%= data.Title %> - <%- data.Year %> <i class="material-icons right">expand_less</i></span>
+                    <p data-simplebar data-simplebar-auto-hide="false">
+                        <%- data.Plot %>
+                    </p>
+                </div>
+                <div class="card-reveal black">
+                    <span class="card-title white-text text-darken-4"><%= data.Title %><i class="material-icons right">close</i></span>
+                    <%# <p>Here is some more information about this product that is only revealed once clicked on.</p> %> 
+                    <ul>
+                        <li>Released <br> <span><%= data.Released %></span></li> <br>
+                        <li>Actors  <br> <span><%= data.Actors %></span></li> <br>
+                        <h5> Ratings </h5>
+                        <table class="white-text centered">
+                        <thead>
+                            <tr>
+                            <% data.Ratings.forEach(element => { %>
+                                    <th> <%= element.Source %>  </th>
+                             
+                            <% }) %>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                            <% data.Ratings.forEach(element => { %>
+                                  <td>
+                                    <%= element.Value  %>
+                                </td> 
+                            <% }) %>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                        <li>  Box Office <br> <b> <%= data.BoxOffice %> </b>  </li>
+                    </ul>
+                  </div>
+
+            </div>
 
 
-</div>
+        </div>
+    </div>
 </div>
 
 <script src="/materialize.js"></script>
-
+<script src="/jquery-3.3.1.js"></script>
+<script src="/initialize.js"></script>
+<script src="/js/simplebar.js"></script>

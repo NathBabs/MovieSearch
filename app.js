@@ -1,12 +1,13 @@
 /* eslint-disable react/wrap-multilines */
 /* eslint-disable react/require-extension */
 /* eslint-disable react/jsx-sort-prop-types */
-var express = require('express');
-var request = require('request');
+const express = require('express');
+const request = require('request');
 
-var app = express();
+const app = express();
 
 app.use(express.static('public'));
+app.use('/js', express.static(__dirname + '/node_modules/simplebar/dist'));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
@@ -14,12 +15,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/results', function(req, res) {
-    var query = encodeURI(req.query.search);
-    var url = 'http://www.omdbapi.com/?s=' + query + '&apikey=thewdb';
-    console.log(url);
+    const query = encodeURI(req.query.search);
+    const url = 'http://www.omdbapi.com/?s=' + query + '&apikey=thewdb';
+    /* console.log(url); */
    request({url}, (error, response, body) => {
         if (!error && response.statusCode == 200){
-            var data = JSON.parse(body);
+            const data = JSON.parse(body);
             res.status(200); 
             res.render('results', {data:data});
         } else {
@@ -31,8 +32,10 @@ app.get('/results', function(req, res) {
 app.get('/detailedResults', (req, res) => {
     const movie_title = encodeURI(req.query.movie_title);
     const movie_year = req.query.year;
-    const url = `http://www.omdbapi.com/?t=${movie_title}&y=${movie_year}&apikey=thewdb`;
-    console.log(url);
+    const plot = req.query.plot;
+    const url = `http://www.omdbapi.com/?t=${movie_title}&plot=${plot}&y=${movie_year}&apikey=thewdb`;
+    /* console.log(url); */
+    
     request({url}, (error, response, body) => {
         if (!error && response.statusCode == 200) {
             const data = JSON.parse(body);

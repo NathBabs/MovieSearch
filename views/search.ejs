@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/app.css">
 <link rel="stylesheet" href="/materialize.css">
-
+<script src="/jquery-3.3.1.js"></script>
 <div class="container">
   <div class="row">
     <div class="col s12 m6 offset-m3">
@@ -12,27 +12,45 @@
               <div class="input-field col s12">
                 <input id="search" name="search" type="text" class="validate">
                 <label for="search" class="active">Movie/Series Search</label>
-              <input type="submit" class="btn" value="Search">
+                <input type="submit" class="btn" value="Search">
               </div>
             </div>
           </form>
 
-            <form action="/detailedResults" method="GET">
+          <form action="/detailedResults" method="GET">
             <div class="row">
               <div class="input-field col s12">
                 <input id="movie_title" name="movie_title" type="text" class="validate">
                 <label for="movie_title" class="active">Movie Title</label>
-             </div>
-            <div class="input-field col s12">
+              </div>
+              <div class="input-field col s12">
                 <input id="year" name="year" type="text" class="validate">
                 <label for="year" class="active">Year of Movie</label>
-              <input type="submit" class="btn" value="Search">
-            </div>
+
+                <div class="input-field col s12">
+                  <select id="plot" name="plot">
+                    <option value="" disabled selected>Choose movie plot</option>
+                    <label for="male">Plot Type</label>
+                    <option value="full" id="full">Full</option>
+                    <label for="short">Plot Type</label>
+                    <option value="short" id="male">Short</option>
+                  </select>
+                </div>
+
+                <input type="submit" class="btn" value="Search">
+              </div>
+
             </div>
           </form>
+          <script type="text/javascript">
+
+          </script>
+
 
         </div>
       </div>
     </div>
 
-<script src="/materialize.js"></script>
+    <script src="/materialize.js"></script>
+    <script src="/jquery-3.3.1.js"></script>
+    <script src="/initialize.js"></script>
