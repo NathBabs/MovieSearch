@@ -3,15 +3,27 @@
 /* eslint-disable react/jsx-sort-prop-types */
 const express = require('express');
 const request = require('request');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
+
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use('/js', express.static(__dirname + '/node_modules/simplebar/dist'));
 app.set('view engine', 'ejs');
+app.use(cookieParser());
+app.use(session({
+    secret : process.env.SECRET || 'secret',
+    saveUninitialized : true,
+    resave: true
+}));
+
 
 app.get('/', (req, res) => {
-    res.render('search');
+    res.render('search', {req:req});
 });
 
 app.get('/results', function(req, res) {
@@ -21,8 +33,13 @@ app.get('/results', function(req, res) {
    request({url}, (error, response, body) => {
         if (!error && response.statusCode == 200){
             const data = JSON.parse(body);
-            res.status(200); 
-            res.render('results', {data:data});
+            if (data.Error) {
+                res.render('alert', {data: data});
+            } else {
+                res.status(200); 
+                res.render('results', {data:data});
+            }
+            
         } else {
             console.log(error);
         }
@@ -39,16 +56,21 @@ app.get('/detailedResults', (req, res) => {
     request({url}, (error, response, body) => {
         if (!error && response.statusCode == 200) {
             const data = JSON.parse(body);
-            res.status(200);
-            res.render('detailedResults', {data:data});
+            if (data.Error) {
+                res.render('alert', {data: data});
+            } else {
+                res.status(200);
+                res.render('detailedResults', {data:data});
+            }
+            
         } else {
-            console.log(error);
+            console.log('Detailed Results error \n', error);
             
         }
     });
     
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
     console.log('Movie App HAS STARTED!!');
 });

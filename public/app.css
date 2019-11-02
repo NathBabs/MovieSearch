@@ -21,7 +21,6 @@
 .col.s12.m6.offset-m3 {
     top: 50%;
     margin-bottom: 50vw;
-    margin-bottom: 50vw;
 }
 
 .valign-wrapper {
@@ -36,4 +35,9 @@
 .card {
     margin: 0 auto;
     position: relative;
+}
+
+.col.s12.l4 {
+  height: 50vh !important;
+  margin: 0 auto !important;
 }
